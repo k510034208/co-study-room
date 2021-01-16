@@ -12,6 +12,35 @@ chai.should();
 
 describe("signup Page", () => {
 
+  // 前処理
+  before(async () => {
+    try {
+      await db.User.destroy({
+        where: {
+          loginid: { [ Op.like ]: `useraddtest%` }
+        }
+      });
+    } catch (e) {
+      console.log(e);
+      console.log('ユーザが削除されませんでした');
+    }
+  });
+
+  // 後処理
+  after(async () => {
+    try {
+      await db.User.destroy({
+        where: {
+          loginid: { [ Op.like ]: `useraddtest%` }
+        }
+      });
+    } catch (e) {
+      console.log(e);
+      console.log('ユーザが削除されませんでした');
+    }
+  });
+
+
   describe("GET /signup ", () => {
 
     //TEST for GET Index Page
@@ -37,20 +66,6 @@ describe("signup Page", () => {
   });
 
   describe('POST /signup', async () => {
-
-    // 後処理
-    after(async () => {
-      try {
-        await db.User.destroy({
-          where: {
-            loginid: { [ Op.like ]: `useraddtest%` }
-          }
-        });
-      } catch (e) {
-        console.log(e);
-        console.log('ユーザが削除されませんでした');
-      }
-    });
     
     // status確認
     it('200OK', (done) => {
@@ -102,7 +117,22 @@ describe("signup Page", () => {
         });
     });
 
-    // formのバリデーションチェック
+    it('login_id が32文字以上の場合', (done) => {
+
+      chai.request(app)
+        .post('/signup')
+        .send({
+          login_id: 'useraddtest2345678901234567890123',
+          user_name: 'ユーザ追加002',
+          password: 'password'
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.text).to.include('Login IDは32文字以内で登録してください。');
+          done();
+        });
+    });
+
     it('login_id が32文字以上の場合', (done) => {
 
       chai.request(app)
@@ -119,5 +149,36 @@ describe("signup Page", () => {
         });
     });
     
+    it('user_name が半角64文字以上の場合', (done) => {
+
+      chai.request(app)
+        .post('/signup')
+        .send({
+          login_id: 'useraddtest004',
+          user_name: '12345678901234567890123456789012345678901234567890123456789012345',
+          password: 'password'
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.text).to.include('User Nameは半角64文字以内で登録してください。');
+          done();
+        });
+    });
+
+    it('user_name が空の場合', (done) => {
+
+      chai.request(app)
+        .post('/signup')
+        .send({
+          login_id: 'useraddtest004',
+          user_name: '',
+          password: 'password'
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.text).to.include('User Nameが入力されていません。');
+          done();
+        });
+    });
   });
 });

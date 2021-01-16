@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     loginid: {
       type: DataTypes.STRING,
       validate: {
+        notEmpty: {
+          msg: 'Login IDが入力されていません。'
+        },
         is: {
           args: /^[A-Za-z0-9]+$/i,
           msg: 'Login IDは半角英数字で登録してください。'
@@ -29,7 +32,18 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
     },
-    username: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg:'User Nameが入力されていません。',
+        },
+        len: {
+          args: [1, 64],
+          msg:'User Nameは半角64文字以内で登録してください。'
+        },
+      },
+    },
     password: {
       type: DataTypes.STRING,
     }

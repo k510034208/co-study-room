@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login_</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="./stylesheets/styles.min.css?h=471ecc0a3f7995eef86ac52a9708a070">
+</head>
+
+<body>
+    <header>
+        <%- include('./common/header') %>
+    </header>
+
+    <!-- Start: Login Form Clean -->
+    <div class="container-fluid" style="margin: 12px 0px;padding: 3px 15px;">
+        <a href="./makeroom.html">学習部屋を作成する</a>
+    </div>
+    
+    <div class="container-fluid" style="margin: 20px 0px;padding: 3px 15px;">
+        <strong>学習部屋一覧</strong>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>学習部屋の名前</th>
+                    <th style="width: 184px;">学習期間</th>
+                    <th>学習仲間</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 82px;"><a href="./room.html"><button class="btn btn-primary" type="button">入室</button></a></td>
+                    <td style="padding: 18px 12px;">学習部屋A</td>
+                    <td>2021/2/1 ~ 2021/2/28</td>
+                    <td>吉川、坂本、丸、岡本</td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-primary" type="button">入室</button></td>
+                    <td style="padding: 18px 12px;">学習部屋B</td>
+                    <td>2021/2/14 ~ 2021/3/9</td>
+                    <td>梶谷、中井、岡本</td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <%- include('./common/footer') %>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
