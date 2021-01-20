@@ -10,19 +10,19 @@ var expect = chai.expect;
 chai.use(chaiHttp);
 chai.should();
 
-describe("signup Page", () => {
+describe("room作成画面", () => {
 
   // 前処理
   before(async () => {
     try {
-      await db.User.destroy({
-        where: {
-          loginid: { [ Op.like ]: `roomid%` }
-        }
+      await db.User.create({
+        loginid: 'roomid001',
+        username: 'roomname001',
+        password: 'roompassword001',        
       });
     } catch (e) {
       console.log(e);
-      console.log('ユーザが削除されませんでした');
+      console.log('ユーザが作成されませんでした');
     }
   });
 
@@ -44,6 +44,16 @@ describe("signup Page", () => {
   describe("GET /room ", () => {
     
     // ログインしていない場合、ログイン画面に遷移する
+    it('200OK', (done) => {
+      chai.request(app)
+        .get('/room/register')
+        .end((err, res) => {
+          expect(err).to.be.null; // エラーがないこと
+          expect(res).to.have.status(200); //statusの指定
+          expect(res.text).to.include('Login Form'); //LoginFormの文字列を確認する
+          done();
+        })
+    });    
 
   });
 });

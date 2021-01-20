@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>room register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="../stylesheets/styles.min.css">
+</head>
+
+<body>
+    <header>
+        <%- include('./common/header') %>
+    </header>
+
+    <form action="/room/register" method="POST">
+        <div class="container" style="margin-top: 30px;margin-bottom: 12px;">
+            <h4>ルームを作成する</h4>
+            <p>ルーム名、学習期間などを設定してルームを作成します。</p>
+        </div>
+        <div class="container" style="margin-top: 30px;margin-bottom: 12px;padding-top: 30px;border-top-style: solid;">
+            <h5>ルーム名</h5>
+            <input type="text" name="room_name" style="width: 320px;">
+        </div>
+        <div class="container" style="margin-top: 50px;margin-bottom: 12px;">
+            <h5>このルームの概要</h5>
+            <textarea name="room_sammary" style="width: 640px;"></textarea>
+        </div>
+        <div class="container" style="margin-top: 30px;margin-bottom: 12px;padding-top: 30px;border-top-style: solid;">
+            <h5>参考書のタイトル</h5>
+            <input type="text" name="book_title" style="width: 320px;">
+        </div>        
+        <div class="container" style="margin-top: 50px;margin-bottom: 12px;">
+            <h5>学習期間</h5>
+            <p>開始日：<input type="date" name="start_date" style="margin-left: 10px;"></p>
+            <p>終了日：<input type="date" name="end_date" style="margin-left: 10px;"></p>
+        </div>
+
+        <div class="container" style="margin-top: 50px;margin-bottom: 12px;">
+            <h5>学習スケジュールの設定</h5>
+            <li>学習期間をいくつかの期間（最大4つの期間）に分割し、各期間で学習する内容（例：参考書の1章～3章 等）と終了予定日を設定します。</li>
+            <li>学習期間の最後の期間にはオリジナル課題を設定しましょう。<br>・設定した課題は学習メンバーへ共有しましょう。達成に向けて頑張ってください！</li>
+
+            <p>分割数：<input type="number" max="4" min="1" value=""></p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">&nbsp;期間</th>
+                            <th style="width: 70%;">学習内容</th>
+                            <th style="width: 20%;">終了予定日</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>第１章～第３章</td>
+                            <td><input type="date" style="margin-left: 10px;"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>第4章<br></td>
+                            <td><input type="date" style="margin-left: 10px;"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>最終課題（固定値）</td>
+                            <td>2020/2/28 （学習期間の最終日を指定）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 50px;margin-bottom: 12px;">
+            <h5>勉強会情報</h5>
+            <textarea name="meetng_sammary" style="width: 640px;"></textarea>
+        </div>        
+        <div class="container" style="margin-top: 50px;margin-bottom: 12px;">
+            <input type="submit" class="btn btn-primary" name="type" value="ルームを作成する" ></input>
+            <input type="submit" class="btn btn-primary" name="type" value="一時保存" style="margin-left: 10px;background: rgba(0,123,255,0.45);"></input>
+            <a href="./top.html"><button class="btn btn-primary" type="button" style="margin-left: 10px;background: rgba(0,123,255,0.45);">Top画面へ戻る</button></a>
+        </div>
+    </form>
+
+    <footer>
+        <%- include('./common/footer') %>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

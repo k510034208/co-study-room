@@ -22,8 +22,10 @@ router.post('/', async function (req, res, next) {
   try {
       
     var loginuser = await db.User.findOne({
+      where: {
       loginid: login_id,
-      password: input_password
+      password: input_password        
+      },
     },);
 
     if (!loginuser) {
@@ -32,11 +34,9 @@ router.post('/', async function (req, res, next) {
       });      
     }
 
-    req.session.login.loginid = loginuser.loginid;
-    res.render('top', {
-      title: 'co-study-room top',
-      message: [],
-    });
+    loginuser.password=undefined;
+    req.session.login = loginuser.loginid;
+    res.redirect('/top');
 
   } catch (err) {
 
