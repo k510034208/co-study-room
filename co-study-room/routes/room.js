@@ -1,16 +1,19 @@
 var express = require('express');
 const db = require('../models');
 var router = express.Router();
+const dbcontroller = require('../modules/dbControler');
 
 /* GET /room/register page. */
 router.get('/register', function (req, res, next) {
   
-  if (!req.session.login) {
+  if (!req.session.loginid) {
     res.redirect('/');
     return;
   }
 
-  res.render('room-register', { title: 'co-study-room room-register' });
+  res.render('room-register', {
+    title: 'co-study-room room-register',
+  });
 });
 
 /* POST /room/register page. */
@@ -25,7 +28,7 @@ router.post('/register', function (req, res, next) {
 
   // start_dateとend_dateの比較
   
-  if (!req.session.login) {
+  if (!req.session.loginid) {
     res.redirect('/');
     return;
   }

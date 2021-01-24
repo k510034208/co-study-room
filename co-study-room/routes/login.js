@@ -1,6 +1,7 @@
 var express = require('express');
 const db = require('../models');
 var router = express.Router();
+var dbcontroller = require('../modules/dbControler');
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
@@ -34,8 +35,8 @@ router.post('/', async function (req, res, next) {
       });      
     }
 
-    loginuser.password=undefined;
-    req.session.login = loginuser.loginid;
+    req.session.loginid = loginuser.loginid;
+
     res.redirect('/top');
 
   } catch (err) {

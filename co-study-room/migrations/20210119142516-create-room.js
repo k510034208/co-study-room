@@ -30,6 +30,9 @@ module.exports = {
       meeting: {
         type: Sequelize.STRING
       },
+      aclid: {
+        type: Sequelize.INTEGER        
+      },
       createdAt: {
         allowNull: false,
         type: 'TIMESTAMP',
