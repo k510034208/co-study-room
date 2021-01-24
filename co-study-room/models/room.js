@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+<<<<<<< HEAD
       this.hasOne(models.RoomAcl);
+=======
+>>>>>>> parent of 8ff0415... assosiationが解決していない
     }
   };
   Room.init({
@@ -21,7 +24,11 @@ module.exports = (sequelize, DataTypes) => {
     enddate: DataTypes.DATE,
     bookid: DataTypes.INTEGER,
     schduleid: DataTypes.INTEGER,
+<<<<<<< HEAD
     meeting: DataTypes.STRING,
+=======
+    meeting: DataTypes.STRING
+>>>>>>> parent of 8ff0415... assosiationが解決していない
   }, {
     sequelize,
     modelName: 'Room',
