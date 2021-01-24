@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasOne(models.RoomAcl);
-
     }
   };
   Room.init({
@@ -23,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     bookid: DataTypes.INTEGER,
     schduleid: DataTypes.INTEGER,
     meeting: DataTypes.STRING,
-    aclid: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Room',

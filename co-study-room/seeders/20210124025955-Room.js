@@ -2,10 +2,16 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('RoomAcls', [
+    return queryInterface.bulkInsert('Rooms', [
       {
-        userid: 1,
-        roomid:1        ,
+        id:1,
+        roomname: 'test room',
+        sammary: 'test room',
+        startdate: new Date(),
+        enddate: new Date(),
+        bookid: 1,
+        schduleid: 1,
+        meeting: 'test',
       }
     ]);
   },
