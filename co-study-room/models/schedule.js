@@ -3,23 +3,26 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class RoomAcl extends Model {
+  class Schedule extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.User);
+      // define association here
       this.belongsTo(models.Room);
     }
   };
-  RoomAcl.init({
+  Schedule.init({
+    term: DataTypes.INTEGER,
     roomid: DataTypes.INTEGER,
-    userid: DataTypes.INTEGER
+    term_end_date: DataTypes.DATE,
+    term_content: DataTypes.STRING,
+    term_task: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'RoomAcl',
+    modelName: 'Schedule',
   });
-  return RoomAcl;
+  return Schedule;
 };

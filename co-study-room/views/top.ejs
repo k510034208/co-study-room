@@ -35,19 +35,16 @@
                 </tr>
             </thead>
             <tbody>
+                <% if(rooms){ %>
+                <% for(var room of rooms){ %> 
                 <tr>
                     <td style="width: 82px;"><a href="./room.html"><button class="btn btn-primary" type="button">入室</button></a></td>
-                    <td style="padding: 18px 12px;">学習部屋A</td>
-                    <td>2021/2/1 ~ 2021/2/28</td>
+                    <td style="padding: 18px 12px;"><%= room.Room.roomname %></td>
+                    <td><%= room.Room.startdate %> ~ <%= room.Room.enddate %></td>
                     <td>吉川、坂本、丸、岡本</td>
                 </tr>
-                <tr>
-                    <td><button class="btn btn-primary" type="button">入室</button></td>
-                    <td style="padding: 18px 12px;">学習部屋B</td>
-                    <td>2021/2/14 ~ 2021/3/9</td>
-                    <td>梶谷、中井、岡本</td>
-                </tr>
-                <tr></tr>
+                <% } %>
+                <% } %>
             </tbody>
         </table>
     </div>

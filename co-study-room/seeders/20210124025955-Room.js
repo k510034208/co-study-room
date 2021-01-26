@@ -7,21 +7,16 @@ module.exports = {
         id:1,
         roomname: 'test room',
         sammary: 'test room',
-        startdate: new Date(),
-        enddate: new Date(),
+        startdate: new Date(2021,0,1,0,0,0),
+        enddate: new Date(2021,1,28,0,0,0),
         bookid: 1,
-        schduleid: 1,
         meeting: 'test',
       }
     ]);
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
+    return queryInterface.bulkDelete('Rooms', null, {
+      id:1
+    });  }
 };

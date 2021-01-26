@@ -6,6 +6,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'co-study-room',
+    message:''
   });
 });
 
@@ -31,11 +32,17 @@ router.post('/', async function (req, res, next) {
     if (!loginuser) {
       res.render('index', {
         title: 'co-study-room',
+        message:''
       });      
     }
 
-    loginuser.password=undefined;
-    req.session.login = loginuser.loginid;
+    // セッションの保存
+    loginuser.password = undefined;
+    req.session.loginuser = {
+      id: loginuser.id,
+      loginid: loginuser.loginid,
+      loginname: loginuser.username,
+    }
     res.redirect('/top');
 
   } catch (err) {

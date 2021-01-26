@@ -1,16 +1,22 @@
 var express = require('express');
-const db = require('../models');
+const dbController = require('../modules/dbController');
 var router = express.Router();
 
 /* GET /top page. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
   
-  if (!req.session.login) {
+  if (!req.session.loginuser) {
     res.redirect('/');
     return;
   }
 
-  res.render('top', { title: 'co-study-room top' });
+  // ログインしているユーザのIDに紐づくルーム情報を取得する
+  var rooms = await dbController.getRoomList(req.session.loginuser.id);
+
+  res.render('top', {
+    title: 'co-study-room top',
+    rooms:rooms
+  });
 });
 
 module.exports = router;

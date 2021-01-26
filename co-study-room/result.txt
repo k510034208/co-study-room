@@ -1,0 +1,438 @@
+
+
+  room作成画面
+Executing (default): INSERT INTO `Users` (`id`,`loginid`,`username`,`password`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+    GET /room/register 
+Executing (default): INSERT INTO `Users` (`id`,`loginid`,`username`,`password`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);
+[0mGET /room/register [36m302 [0m5.532 ms - 23[0m
+[0mGET / [32m200 [0m9.707 ms - 2695[0m
+      √ 200OK
+Executing (default): SELECT `id`, `loginid`, `username`, `password`, `createdAt`, `updatedAt` FROM `Users` AS `User` WHERE `User`.`loginid` = 'roomid001' AND `User`.`password` = 'roompassword001' LIMIT 1;
+[0mPOST /login [36m302 [0m16.354 ms - 26[0m
+Executing (default): SELECT `RoomAcl`.`id`, `RoomAcl`.`roomid`, `RoomAcl`.`userid`, `RoomAcl`.`createdAt`, `RoomAcl`.`updatedAt`, `RoomAcl`.`UserId`, `RoomAcl`.`RoomId`, `Room`.`id` AS `Room.id`, `Room`.`roomname` AS `Room.roomname`, `Room`.`sammary` AS `Room.sammary`, `Room`.`startdate` AS `Room.startdate`, `Room`.`enddate` AS `Room.enddate`, `Room`.`bookid` AS `Room.bookid`, `Room`.`schduleid` AS `Room.schduleid`, `Room`.`meeting` AS `Room.meeting`, `Room`.`createdAt` AS `Room.createdAt`, `Room`.`updatedAt` AS `Room.updatedAt`, `User`.`id` AS `User.id`, `User`.`loginid` AS `User.loginid`, `User`.`username` AS `User.username`, `User`.`password` AS `User.password`, `User`.`createdAt` AS `User.createdAt`, `User`.`updatedAt` AS `User.updatedAt` FROM `RoomAcls` AS `RoomAcl` LEFT OUTER JOIN `Rooms` AS `Room` ON `RoomAcl`.`RoomId` = `Room`.`id` LEFT OUTER JOIN `Users` AS `User` ON `RoomAcl`.`UserId` = `User`.`id` WHERE `RoomAcl`.`userid` = 323 ORDER BY `RoomAcl`.`createdAt` ASC;
+[]
+[0mGET /top [32m200 [0m10.958 ms - 2717[0m
+[0mGET /room/register [32m200 [0m2.240 ms - 6233[0m
+AssertionError: expected { Object (_events, _eventsCount, ...) } to be null
+    at C:\Users\81904\Desktop\TechAcademy\co-study-room\co-study-room\tests\room.test.js:97:32
+    at processTicksAndRejections (internal/process/task_queues.js:93:5) {
+  showDiff: false,
+  actual: <ref *1> Response {
+    _events: [Object: null prototype] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      socket: [Socket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      headers: [Object],
+      rawHeaders: [Array],
+      trailers: {},
+      rawTrailers: [],
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 200,
+      statusMessage: 'OK',
+      client: [Socket],
+      _consuming: false,
+      _dumped: false,
+      req: [ClientRequest],
+      text: '<!DOCTYPE html>\r\n' +
+        '<html>\r\n' +
+        '\r\n' +
+        '<head>\r\n' +
+        '    <meta charset="utf-8">\r\n' +
+        '    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">\r\n' +
+        '    <title>room register</title>\r\n' +
+        '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">\r\n' +
+        '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">\r\n' +
+        '    <link rel="stylesheet" href="../stylesheets/styles.min.css">\r\n' +
+        '</head>\r\n' +
+        '\r\n' +
+        '<body>\r\n' +
+        '    <div id="app">\r\n' +
+        '        <header>\r\n' +
+        '            <!-- Start: Navigation with Button -->\r\n' +
+        '<nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="color: var(--light);">\r\n' +
+        '  <div class="container">\r\n' +
+        '      <a class="navbar-brand" href="/">co-study-room</a>\r\n' +
+        '      <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">\r\n' +
+        '        <span class="sr-only">Toggle navigation</span>\r\n' +
+        '        <span class="navbar-toggler-icon"></span>\r\n' +
+        '    </button>\r\n' +
+        '\r\n' +
+        '    <div class="collapse navbar-collapse" id="navcol-1">\r\n' +
+        '      <ul class="nav navbar-nav mr-auto"></ul>\r\n' +
+        '      <span class="navbar-text actions"> \r\n' +
+        '        <a class="btn btn-light action-button" role="button" href="/" style="margin: 0px 12px;">Log In</a>\r\n' +
+        '        <a class="btn btn-light action-button" role="button" href="/signup">Sign Up</a>\r\n' +
+        '      </span>\r\n' +
+        '    </div>\r\n' +
+        '</div>\r\n' +
+        '</nav>\r\n' +
+        '<!-- End: Navigation with Button -->\r\n' +
+        '        </header>\r\n' +
+        '\r\n' +
+        '        <form action="/room/register" method="POST">\r\n' +
+        '            <div class="container" style="margin-top: 30px;margin-bottom: 12px;">\r\n' +
+        '                <h4>ルームを作成する</h4>\r\n' +
+        '                <p>ルーム名、学習期間などを設定してルームを作成します。</p>\r\n' +
+        '            </div>\r\n' +
+        '            <div class="container" style="margin-top: 30px;margin-bottom: 12px;padding-top: 30px;border-top-style: solid;">\r\n' +
+        '                <h5>ルーム名</h5>\r\n' +
+        '                <input type="text" name="room_name" style="width: 320px;">\r\n' +
+        '            </div>\r\n' +
+        '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+        '                <h5>このルームの概要</h5>\r\n' +
+        '                <textarea name="room_sammary" style="width: 640px;"></textarea>\r\n' +
+        '            </div>\r\n' +
+        '            <div class="container" style="margin-top: 30px;margin-bottom: 12px;padding-top: 30px;border-top-style: solid;">\r\n' +
+        '                <h5>参考書のタイトル</h5>\r\n' +
+        '                <input type="text" name="book_title" style="width: 320px;">\r\n' +
+        '            </div>        \r\n' +
+        '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+        '                <h5>学習期間</h5>\r\n' +
+        '                <p>開始日：<input type="date" name="start_date" style="margin-left: 10px;"></p>\r\n' +
+        '                <p>終了日：<input type="date" name="end_date" style="margin-left: 10px;"></p>\r\n' +
+        '            </div>\r\n' +
+        '\r\n' +
+        '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+        '                <h5>学習スケジュールの設定</h5>\r\n' +
+        '                <li>学習期間をいくつかの期間（最大4つの期間）に分割し、各期間で学習する内容（例：参考書の1章～3章 等）と終了予定日を設定します。</li>\r\n' +
+        '                <li>学習期間の最後の期間にはオリジナル課題を設定しましょう。<br>・設定した課題は学習メンバーへ共有しましょう。達成に向けて頑張ってください！</li>\r\n' +
+        '\r\n' +
+        `                <p>分割数：<input type="number" max="4" min="1" v-model="num"><input type="button" @click='addTableRow' value="決定" >決定</input></p>\r\n` +
+        '\r\n' +
+        '                <div class="table-responsive">\r\n' +
+        '                    <table class="table">\r\n' +
+        '                        <thead>\r\n' +
+        '                            <tr>\r\n' +
+        '                                <th style="width: 10%;">&nbsp;期間</th>\r\n' +
+        '                                <th style="width: 70%;">学習内容</th>\r\n' +
+        '                                <th style="width: 20%;">終了予定日</th>\r\n' +
+        '                            </tr>\r\n' +
+        '                        </thead>\r\n' +
+        '\r\n' +
+        '                        <!-- inputに入力した値に応じてtableのカラム数を変更する -->\r\n' +
+        '                        <tbody>\r\n' +
+        '                            <tr v-for="n of numarray">\r\n' +
+        '                                <div class="test">\r\n' +
+        '                                    <td>{{ n }}</td>\r\n' +
+        '                                    <td><input type="text" name="content"></td>\r\n' +
+        '                                    <td><input type="date" name="term_end_date" style="margin-left: 10px;"></td>\r\n' +
+        '                                </div>\r\n' +
+        '                            </tr>\r\n' +
+        '                        </tbody>\r\n' +
+        '\r\n' +
+        '                    </table>\r\n' +
+        '                </div>\r\n' +
+        '\r\n' +
+        '            </div>\r\n' +
+        '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+        '                <h5>勉強会情報</h5>\r\n' +
+        '                <textarea name="meetng_sammary" style="width: 640px;"></textarea>\r\n' +
+        '            </div>        \r\n' +
+        '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+        '                <input type="submit" class="btn btn-primary" name="type" value="ルームを作成する" ></input>\r\n' +
+        '                <input type="submit" class="btn btn-primary" name="type" value="一時保存" style="margin-left: 10px;background: rgba(0,123,255,0.45);"></input>\r\n' +
+        '                <a href="/top"><button class="btn btn-primary" type="button" style="margin-left: 10px;background: rgba(0,123,255,0.45);">Top画面へ戻る</button></a>\r\n' +
+        '            </div>\r\n' +
+        '        </form>\r\n' +
+        '\r\n' +
+        '        <footer>\r\n' +
+        '            <!-- Start: Footer -->\r\n' +
+        '  <div class="footer-basic" style="padding: 10px;">\r\n' +
+        '      <!-- Start: Copyright -->\r\n' +
+        '      <p class="copyright">co-study-room © 2021</p>\r\n' +
+        '      <!-- End: Copyright -->\r\n' +
+        '</div>\r\n' +
+        '<!-- End: Footer -->\r\n' +
+        '        </footer>\r\n' +
+        '\r\n' +
+        '        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>\r\n' +
+        '        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>\r\n' +
+        '        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>\r\n' +
+        '        <script src="../javascripts/room-reqister.js"></script>\r\n' +
+        '    </div>\r\n' +
+        '</body>\r\n' +
+        '\r\n' +
+        '</html>',
+      [Symbol(kCapture)]: false,
+      [Symbol(RequestTimeout)]: undefined
+    },
+    request: Test {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _agent: false,
+      _formData: null,
+      method: 'get',
+      url: 'http://127.0.0.1:61242/room/register',
+      _header: [Object],
+      header: [Object],
+      writable: true,
+      _redirects: 0,
+      _maxRedirects: 5,
+      cookies: 'connect.sid=s%3AzgAm11hutVX7nS1xOHdhs2mLJaet9k-Q.wLd0RxvJNAEdjQXFq%2BwZ1E%2FRRPfQ1aHgCJ76yDTWXZ0',
+      qs: {},
+      _query: [],
+      qsRaw: [],
+      _redirectList: [],
+      _streamRequest: false,
+      app: [Server],
+      _okCallback: [Function (anonymous)],
+      req: [ClientRequest],
+      protocol: 'http:',
+      host: '127.0.0.1:61242',
+      _endCalled: true,
+      _callback: [Function (anonymous)],
+      _fullfilledPromise: [Promise],
+      res: [IncomingMessage],
+      response: [Circular *1],
+      called: true,
+      [Symbol(kCapture)]: false
+    },
+    req: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [Socket],
+      _header: 'GET /room/register HTTP/1.1\r\n' +
+        'Host: 127.0.0.1:61242\r\n' +
+        'Accept-Encoding: gzip, deflate\r\n' +
+        'User-Agent: node-superagent/3.8.3\r\n' +
+        'Cookie: connect.sid=s%3AzgAm11hutVX7nS1xOHdhs2mLJaet9k-Q.wLd0RxvJNAEdjQXFq%2BwZ1E%2FRRPfQ1aHgCJ76yDTWXZ0\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      path: '/room/register',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: '127.0.0.1',
+      protocol: 'http:',
+      [Symbol(kCapture)]: false,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    text: '<!DOCTYPE html>\r\n' +
+      '<html>\r\n' +
+      '\r\n' +
+      '<head>\r\n' +
+      '    <meta charset="utf-8">\r\n' +
+      '    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">\r\n' +
+      '    <title>room register</title>\r\n' +
+      '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">\r\n' +
+      '    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">\r\n' +
+      '    <link rel="stylesheet" href="../stylesheets/styles.min.css">\r\n' +
+      '</head>\r\n' +
+      '\r\n' +
+      '<body>\r\n' +
+      '    <div id="app">\r\n' +
+      '        <header>\r\n' +
+      '            <!-- Start: Navigation with Button -->\r\n' +
+      '<nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="color: var(--light);">\r\n' +
+      '  <div class="container">\r\n' +
+      '      <a class="navbar-brand" href="/">co-study-room</a>\r\n' +
+      '      <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">\r\n' +
+      '        <span class="sr-only">Toggle navigation</span>\r\n' +
+      '        <span class="navbar-toggler-icon"></span>\r\n' +
+      '    </button>\r\n' +
+      '\r\n' +
+      '    <div class="collapse navbar-collapse" id="navcol-1">\r\n' +
+      '      <ul class="nav navbar-nav mr-auto"></ul>\r\n' +
+      '      <span class="navbar-text actions"> \r\n' +
+      '        <a class="btn btn-light action-button" role="button" href="/" style="margin: 0px 12px;">Log In</a>\r\n' +
+      '        <a class="btn btn-light action-button" role="button" href="/signup">Sign Up</a>\r\n' +
+      '      </span>\r\n' +
+      '    </div>\r\n' +
+      '</div>\r\n' +
+      '</nav>\r\n' +
+      '<!-- End: Navigation with Button -->\r\n' +
+      '        </header>\r\n' +
+      '\r\n' +
+      '        <form action="/room/register" method="POST">\r\n' +
+      '            <div class="container" style="margin-top: 30px;margin-bottom: 12px;">\r\n' +
+      '                <h4>ルームを作成する</h4>\r\n' +
+      '                <p>ルーム名、学習期間などを設定してルームを作成します。</p>\r\n' +
+      '            </div>\r\n' +
+      '            <div class="container" style="margin-top: 30px;margin-bottom: 12px;padding-top: 30px;border-top-style: solid;">\r\n' +
+      '                <h5>ルーム名</h5>\r\n' +
+      '                <input type="text" name="room_name" style="width: 320px;">\r\n' +
+      '            </div>\r\n' +
+      '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+      '                <h5>このルームの概要</h5>\r\n' +
+      '                <textarea name="room_sammary" style="width: 640px;"></textarea>\r\n' +
+      '            </div>\r\n' +
+      '            <div class="container" style="margin-top: 30px;margin-bottom: 12px;padding-top: 30px;border-top-style: solid;">\r\n' +
+      '                <h5>参考書のタイトル</h5>\r\n' +
+      '                <input type="text" name="book_title" style="width: 320px;">\r\n' +
+      '            </div>        \r\n' +
+      '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+      '                <h5>学習期間</h5>\r\n' +
+      '                <p>開始日：<input type="date" name="start_date" style="margin-left: 10px;"></p>\r\n' +
+      '                <p>終了日：<input type="date" name="end_date" style="margin-left: 10px;"></p>\r\n' +
+      '            </div>\r\n' +
+      '\r\n' +
+      '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+      '                <h5>学習スケジュールの設定</h5>\r\n' +
+      '                <li>学習期間をいくつかの期間（最大4つの期間）に分割し、各期間で学習する内容（例：参考書の1章～3章 等）と終了予定日を設定します。</li>\r\n' +
+      '                <li>学習期間の最後の期間にはオリジナル課題を設定しましょう。<br>・設定した課題は学習メンバーへ共有しましょう。達成に向けて頑張ってください！</li>\r\n' +
+      '\r\n' +
+      `                <p>分割数：<input type="number" max="4" min="1" v-model="num"><input type="button" @click='addTableRow' value="決定" >決定</input></p>\r\n` +
+      '\r\n' +
+      '                <div class="table-responsive">\r\n' +
+      '                    <table class="table">\r\n' +
+      '                        <thead>\r\n' +
+      '                            <tr>\r\n' +
+      '                                <th style="width: 10%;">&nbsp;期間</th>\r\n' +
+      '                                <th style="width: 70%;">学習内容</th>\r\n' +
+      '                                <th style="width: 20%;">終了予定日</th>\r\n' +
+      '                            </tr>\r\n' +
+      '                        </thead>\r\n' +
+      '\r\n' +
+      '                        <!-- inputに入力した値に応じてtableのカラム数を変更する -->\r\n' +
+      '                        <tbody>\r\n' +
+      '                            <tr v-for="n of numarray">\r\n' +
+      '                                <div class="test">\r\n' +
+      '                                    <td>{{ n }}</td>\r\n' +
+      '                                    <td><input type="text" name="content"></td>\r\n' +
+      '                                    <td><input type="date" name="term_end_date" style="margin-left: 10px;"></td>\r\n' +
+      '                                </div>\r\n' +
+      '                            </tr>\r\n' +
+      '                        </tbody>\r\n' +
+      '\r\n' +
+      '                    </table>\r\n' +
+      '                </div>\r\n' +
+      '\r\n' +
+      '            </div>\r\n' +
+      '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+      '                <h5>勉強会情報</h5>\r\n' +
+      '                <textarea name="meetng_sammary" style="width: 640px;"></textarea>\r\n' +
+      '            </div>        \r\n' +
+      '            <div class="container" style="margin-top: 50px;margin-bottom: 12px;">\r\n' +
+      '                <input type="submit" class="btn btn-primary" name="type" value="ルームを作成する" ></input>\r\n' +
+      '                <input type="submit" class="btn btn-primary" name="type" value="一時保存" style="margin-left: 10px;background: rgba(0,123,255,0.45);"></input>\r\n' +
+      '                <a href="/top"><button class="btn btn-primary" type="button" style="margin-left: 10px;background: rgba(0,123,255,0.45);">Top画面へ戻る</button></a>\r\n' +
+      '            </div>\r\n' +
+      '        </form>\r\n' +
+      '\r\n' +
+      '        <footer>\r\n' +
+      '            <!-- Start: Footer -->\r\n' +
+      '  <div class="footer-basic" style="padding: 10px;">\r\n' +
+      '      <!-- Start: Copyright -->\r\n' +
+      '      <p class="copyright">co-study-room © 2021</p>\r\n' +
+      '      <!-- End: Copyright -->\r\n' +
+      '</div>\r\n' +
+      '<!-- End: Footer -->\r\n' +
+      '        </footer>\r\n' +
+      '\r\n' +
+      '        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>\r\n' +
+      '        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>\r\n' +
+      '        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>\r\n' +
+      '        <script src="../javascripts/room-reqister.js"></script>\r\n' +
+      '    </div>\r\n' +
+      '</body>\r\n' +
+      '\r\n' +
+      '</html>',
+    body: {},
+    files: undefined,
+    buffered: true,
+    headers: {
+      'x-powered-by': 'Express',
+      'content-type': 'text/html; charset=utf-8',
+      'content-length': '6233',
+      etag: 'W/"1859-j6LJ3BjMeM8BgCsND8vjkG4ToVU"',
+      date: 'Tue, 26 Jan 2021 13:40:28 GMT',
+      connection: 'close'
+    },
+    header: {
+      'x-powered-by': 'Express',
+      'content-type': 'text/html; charset=utf-8',
+      'content-length': '6233',
+      etag: 'W/"1859-j6LJ3BjMeM8BgCsND8vjkG4ToVU"',
+      date: 'Tue, 26 Jan 2021 13:40:28 GMT',
+      connection: 'close'
+    },
+    statusCode: 200,
+    status: 200,
+    statusType: 2,
+    info: false,
+    ok: true,
+    redirect: false,
+    clientError: false,
+    serverError: false,
+    error: false,
+    created: false,
+    accepted: false,
+    noContent: false,
+    badRequest: false,
+    unauthorized: false,
+    notAcceptable: false,
+    forbidden: false,
+    notFound: false,
+    unprocessableEntity: false,
+    type: 'text/html',
+    charset: 'utf-8',
+    links: {},
+    setEncoding: [Function: bound ],
+    redirects: [],
+    [Symbol(kCapture)]: false
+  },
+  expected: undefined
+}
+      1) ルーム作成画面への遷移
+Executing (default): DELETE FROM `Users` WHERE `loginid` LIKE 'loginid%'
+Executing (default): DELETE FROM `Users` WHERE `loginid` LIKE 'roomid%'
+
+
+  1 passing (2s)
+  1 failing
+
+  1) room作成画面
+       GET /room/register 
+         ルーム作成画面への遷移:
+     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (C:\Users\81904\Desktop\TechAcademy\co-study-room\co-study-room\tests\room.test.js)
+      at listOnTimeout (internal/timers.js:554:17)
+      at processTimers (internal/timers.js:497:7)
+
+
+

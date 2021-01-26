@@ -31,7 +31,7 @@ describe("Login Test", () => {
     try {
       await db.User.destroy({
         where: {
-          loginid: { [ Op.like ]: `loginname%` }
+          loginid: { [ Op.like ]: `loginid%` }
         }
       });
     } catch (e) {
