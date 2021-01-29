@@ -9,14 +9,14 @@ var router = express.Router();
 /* GET /room/register page. */
 router.get('/register', function (req, res, next) {
 
-  if (!tools.checkLoginId) {
-
+  if (!tools.checkLoginstatus(req)) {
     res.redirect('/');
     return;
   }
 
   res.render('room-register', {
-    message: null
+    message: null,
+    form:{}
   });
 });
 
@@ -24,14 +24,14 @@ router.get('/register', function (req, res, next) {
 router.post('/register', async function (req, res, next) {
 
   try{
-  var room_name = req.body.room_name; //string
-  var room_sammary = req.body.room_sammary; //string
-  var start_date = tools.translateStringToDate(req.body.start_date); // 2021-01-27 => Date型
-  var end_date = tools.translateStringToDate(req.body.end_date); // 2021-01-27 => Date型
-  var book_title = req.body.book_title; //string
-  var meetng_sammary = req.body.meetng_sammary; //string
+    var room_name = req.body.room_name; //string
+    var room_sammary = req.body.room_sammary; //string
+    var start_date = tools.translateStringToDate(req.body.start_date); // 2021-01-27 => Date型
+    var end_date = tools.translateStringToDate(req.body.end_date); // 2021-01-27 => Date型
+    var book_title = req.body.book_title; //string
+    var meetng_sammary = req.body.meetng_sammary; //string
 
-  var term_content = req.body.content;
+    var term_content = req.body.content;
   
     var term_end_date_raw = req.body.term_end_date;
     var term_end_date = [];
@@ -40,15 +40,19 @@ router.post('/register', async function (req, res, next) {
       term_end_date.push(tools.translateStringToDate(date));  
     }
     
-  if (!tools.checkLoginId) {
+    if (!tools.checkLoginstatus(req)) {
 
-    res.redirect('/');
-    return;
-  }
+      res.redirect('/');
+      return;
+    }
 
-  // start_dateとend_dateの比較
+    // start_dateとend_dateの比較
+    if (!tools.compareDate(start_date, end_date)) {
+      renderRoomRegister(req, res, '開始日は終了日より前の日付を設定してください');
+      return;
+    }
 
-  // term毎のend_dateの比較
+    // term毎のend_dateの比較
 
   // データの登録
     await db.sequelize.transaction(async (t) => {
@@ -69,30 +73,42 @@ router.post('/register', async function (req, res, next) {
       }, { transaction: t });
 
       // スケジュール情報の登録
-      var schedule;
-      for (var i = 0; i < term_content.lengh; i++) {
-        schedule = await db.Schedule.create({
+      var schedule_data = [];
+      for (var i = 0; i < term_content.length; i++) {
+        schedule_data.push({
           roomid: room.id,
-          term_end_date: term_end_date[i],
-          term_content: term_content[i],
+          term: i + 1,
+          term_end_date: term_end_date[ i ],
+          term_content: term_content[ i ],
           term_task: ''
-        }, { transaction: t });
+        });
       }
+
+      await db.Schedule.bulkCreate(schedule_data, { transaction: t });
+
+      // ACLの登録
+      await db.RoomAcl.create({
+        userid: req.session.loginuser.id,
+        roomid: room.id,
+      }, { transaction: t });
 
     });
     
   } catch(err) {
     console.error(err);
-    res.render('room-register', {
-      messsage:'エラーが発生しました'
-    })
+    renderRoomRegister(req, res, 'エラーが発生しました');
     return;
   }
 
-  res.render('room-register', {
-    message:'ルームが作成されました'
-  });
+  renderRoomRegister(req, res, 'ルームが作成されました');
 });
+
+function renderRoomRegister(req, res,message) {
+  res.render('room-register', {
+    message: message,
+    form: req.body
+  });
+}
 
 
 module.exports = router;

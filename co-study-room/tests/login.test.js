@@ -56,21 +56,28 @@ describe("Login Test", () => {
   })
 
   describe("POST /login ", () => {
-
     // ログイン成功
-    it('ログイン成功', (done) => {
-      chai.request(app)
+    it('ログイン成功（セッションにloginuserが登録されること', (done) => {
+      var agent = chai.request.agent(app)
+      agent
         .post('/login')
         .send({
-          login_id:"loginid001",
-          password:"loginpassword001"
+          login_id: "loginid001",
+          password: "loginpassword001"
         })
-        .end((err, res) => {
-          expect(err).to.be.null; // エラーがないこと
-          expect(res).to.have.status(200); //statusの指定
-          expect(res.text).to.include('学習部屋を作成する'); //TOP画面内の特定の文字列があることを確認する
-          done();
+        .then((res) => {
+          expect(res).to.have.status(200);
+          return agent.get('/top')
+            .then((res) => {
+              expect(res).to.have.status(200); //statusの指定
+              expect(res.text).to.include('作成する'); //TOP画面内の特定の文字列があることを確認する
+              done();
+            });
         })
+        .catch(function (error) {
+          console.log(error);
+          throw error;
+        });
     });
   });
 });

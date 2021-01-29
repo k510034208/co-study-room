@@ -18,7 +18,7 @@ router.post('/', async function (req, res, next) {
 
   var login_id = req.body.login_id;
   var input_password = req.body.password;
-  
+
   // 入力パスワードしたパスワードがデータベースのパスワードと一致すること
   try {
       
@@ -32,8 +32,9 @@ router.post('/', async function (req, res, next) {
     if (!loginuser) {
       res.render('index', {
         title: 'co-study-room',
-        message:''
-      });      
+        message:'login error.'
+      });
+      return;
     }
 
     // セッションの保存
@@ -44,13 +45,13 @@ router.post('/', async function (req, res, next) {
       loginname: loginuser.username,
     }
     res.redirect('/top');
-
   } catch (err) {
 
     res.render('index', {
       title: 'co-study-room',
       message: err.errors,
-    });}
+    });
+  }
 });
 
 module.exports = router;

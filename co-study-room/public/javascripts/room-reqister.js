@@ -3,7 +3,7 @@ var app = new Vue({
   data: {
     num: 1,
     numarray: [],
-    s_1: 1,
+    end_date:''
   },
   methods: {
     addTableRow:function () {
@@ -16,7 +16,6 @@ var app = new Vue({
       this.numarray = [];
 
       for (var i = 1; i <= n; i++) {
-        console.log(i);
         this.numarray.push(i);
       }
     },

@@ -1,22 +1,32 @@
 const crypto = require('crypto');
 
-// ログインチェック
-exports.checkLoginId = function (req) {
-  
-  /* テストがうまくいかないのでコメントアウト
-  if (!req.session.loginuser) {
+/*
+ * sammary  日付の比較(yyyy-mm-dd => Date)
+ * @params string <string> 日付（YYYY-MM-DD）
+ */
+exports.compareDate = function (day1, day2) {
+
+  if (intParse(day2) < intParse(day1)) {
     return false;
   }
-  */
   return true;
 }
 
+
+// ログインチェック
+exports.checkLoginstatus = function (req) {
+  
+  if (!req.session.loginuser) {
+    return false;
+  }
+  return true;
+}
 
 // 日付の変換(yyyy-mm-dd => Date)
 exports.translateStringToDate = function (string) {
 
   var re = string.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/);
-  return new Date(parseInt(re[1]), parseInt(re[2])-1, parseInt(re[3]), 0, 0, 0);
+  return new Date(parseInt(re[ 1 ]), parseInt(re[ 2 ]) - 1, parseInt(re[ 3 ]), 0, 0, 0);
 }
 
 // Login IDの文字種チェック（半角英数字）
