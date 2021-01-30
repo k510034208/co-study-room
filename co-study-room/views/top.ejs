@@ -47,7 +47,7 @@
                                 <% for(var username of room.users){ %>
                                     <%= username %>,
                                 <% } %>  
-                                <span style="margin:20px"><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" type="button">招待</button></span>
+                                <span style="margin:0px 20px"><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" @click='getInvitationUrl(<%= room.Room.id%>)' type="button">招待</button></span>
                             </td>
                             <td style="width:10%"><a href="./room.html"><button class="btn btn-primary" type="button">削除</button></a></td>
                         </tr>
@@ -66,11 +66,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{ invitationUrl }}
+                            URL：{{ invitationUrl }}<br>
+                            キーワード：{{ keyword }}<br>
+                            有効期限：{{ expireddate }}
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">OK</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                         </div>
                         </div>
                     </div>
@@ -85,6 +86,8 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+        <script src="./javascripts/vue@2"></script>
+        <script src="./javascripts/top.js"></script>
     </div>
 </body>
 

@@ -11,6 +11,8 @@ var loginRouter = require('./routes/login');
 var topRouter = require('./routes/top');
 var roomRouter = require('./routes/room');
 
+var userApi = require('./api/v1/user');
+
 var app = express();
 
 // view engine setup
@@ -37,6 +39,8 @@ app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/top', topRouter);
 app.use('/room', roomRouter);
+
+app.use('/api/v1/user', userApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
