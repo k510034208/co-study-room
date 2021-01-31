@@ -24,6 +24,14 @@ var app = new Vue({
           return res.json();
         })
         .then(json => {
+
+          if (json.result == 'errror') {
+            this.invitationUrl = '';
+            this.keyword = '';
+            this.expireddate = '';
+            return;
+          }
+
           if (location.port == 80 || location.port == 443) {
             this.invitationUrl = `${ location.protocol }//${ location.hostname }/${ json.data.url }`;
           } else {
