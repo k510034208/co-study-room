@@ -1,0 +1,53 @@
+
+
+  room作成画面
+Executing (default): INSERT INTO `Users` (`id`,`loginid`,`username`,`password`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?);
+Executing (default): INSERT INTO `Rooms` (`id`,`roomname`,`sammary`,`startdate`,`enddate`,`bookid`,`meeting`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?,?);
+Executing (default): INSERT INTO `RoomAcls` (`id`,`roomid`,`userid`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?);
+Executing (default): INSERT INTO `BookInfos` (`id`,`booktitle`,`createdAt`,`updatedAt`) VALUES (?,?,?,?);
+Executing (default): INSERT INTO `Schedules` (`id`,`term`,`roomid`,`term_end_date`,`term_content`,`term_task`,`createdAt`,`updatedAt`) VALUES (?,?,?,?,?,?,?,?);
+    GET /room登録画面の表示 へのアクセス（ログイン画面を表示）
+[0mGET /room/register [36m302 [0m5.127 ms - 23[0m
+[0mGET / [32m200 [0m8.670 ms - 2697[0m
+      √ 200OK
+      √ ルーム作成画面への遷移
+Error: connect ECONNREFUSED 127.0.0.1:63574
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+  errno: -4078,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 63574,
+  response: undefined
+}
+      √ room作成実行
+Error: connect ECONNREFUSED 127.0.0.1:63576
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+  errno: -4078,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 63576,
+  response: undefined
+}
+      √ 個別ルーム画面への遷移
+Error: connect ECONNREFUSED 127.0.0.1:63578
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16) {
+  errno: -4078,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 63578,
+  response: undefined
+}
+Executing (default): DELETE FROM `Users` WHERE `loginid` LIKE 'roomid%'
+Executing (default): DELETE FROM `Rooms` WHERE `id` = 3
+Executing (default): DELETE FROM `RoomAcls` WHERE `id` = 3
+Executing (default): DELETE FROM `BookInfos` WHERE `id` = 3
+Executing (default): DELETE FROM `Schedules` WHERE `id` = 5
+Executing (default): DELETE FROM `Schedules` WHERE `id` = 6
+Executing (default): DELETE FROM `Schedules` WHERE `id` = 7
+
+
+  4 passing (135ms)
+
