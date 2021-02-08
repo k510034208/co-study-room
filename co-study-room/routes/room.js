@@ -117,16 +117,39 @@ router.get('/', async function (req, res, next) {
   var roomid = req.query.id;
 
   // ACLチェック
-  var acl = await tools.checkAcl(roomid, req.session.loginuser.id);
+  //var acl = await tools.checkAcl(roomid, req.session.loginuser.id);
+  var acl = await db.RoomAcl.findAll({
+    where: {
+      roomid: roomid,
+      userid: req.session.loginuser.id
+    }
+  });
 
-  if (!acl) {
-    console.log('err');
+  if (acl.length == 0) {
+    
+    // error処理
     res.redirect('/top');
+    return;
   }
 
-  // render
-  return;
+  var room = await db.Room.findOne({
+    where: {
+      id: roomid
+    },
+  });
 
+  var book = await db.BookInfo.findOne({
+    where: {
+      id: room.bookid
+    },
+  });
+
+  // render
+  res.render('room', {
+    session: req.session,
+    room: room,
+    book:book
+  });
 })
 
 

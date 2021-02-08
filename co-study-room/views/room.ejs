@@ -15,30 +15,34 @@
         <%- include('./common/header') %>
     </header>
 
-    <!-- Start: 2 Rows 1+2 Columns -->
+    <!-- 学習開始日と学習終了日の表示フォーマット -->
+    <% var startdate=`${room.startdate.getFullYear()}-${room.startdate.getMonth()+1}-${room.startdate.getDate()}`%>
+    <% var enddate=`${room.enddate.getFullYear()}-${room.enddate.getMonth()+1}-${room.enddate.getDate()}`%>
+
     <div>
-        <div class="container">
+        <div class="container" style="margin-top: 30px;">
             <div class="row">
                 <div class="col-md-6" style="padding: 8px 16px;">
-                    <p style="margin: 0px 0px 4px;"><strong>学習部屋の名前</strong><br></p>
-                    <p style="margin: 0px 10px 8px;">学習部屋の名前<br></p>
+                    <p style="margin: 0px 0px 4px;"><strong>ルーム名</strong><br></p>
+                    <p style="margin: 0px 10px 8px;"><%= room.roomname %><br></p>
                 </div>
                 <div class="col-md-6" style="padding: 8px 16px;">
-                    <p style="margin: 0px 0px 4px;"><strong>学習に使う参考書</strong><br></p>
-                    <p style="margin: 0px 10px 8px;">node.js 入門第二版<br></p>
+                    <p style="margin: 0px 0px 4px;"><strong>参考書</strong><br></p>
+                    <p style="margin: 0px 10px 8px;"><%= book.booktile %><br></p>
                 </div>
                 <div class="col-md-12" style="padding: 8px 16px;">
-                    <p style="margin: 0px 0px 4px;"><strong>学習部屋の概要</strong><br></p>
-                    <p style="margin: 0px 10px 8px;">node.jsのコーディングスキル取得のための学習部屋<br></p>
+                    <p style="margin: 0px 0px 4px;"><strong>ルームの概要</strong><br></p>
+                    <p style="margin: 0px 10px 8px;"><%= room.sammary %><br></p>
                 </div>
                 <div class="col-md-12" style="padding: 8px 16px;">
                     <p style="margin: 0px 0px 4px;"><strong>学習期間</strong><br></p>
-                    <p style="margin: 0px 10px 8px;">2021/2/1 ~ 2021/2/28<br></p>
+                    <p style="margin: 0px 10px 8px;"><%=startdate %> ~ <%= enddate %><br></p>
                 </div>
             </div>
         </div>
-    </div><!-- End: 2 Rows 1+2 Columns -->
-    <!-- Start: 2 Rows 1+2 Columns -->
+    </div>
+
+    <!-- メインコンテンツ -->
     <div style="background: transparent;padding: 10px;">
         <div class="container">
             <div class="row">
@@ -56,8 +60,8 @@
                 </div>
             </div>
         </div>
-    </div><!-- End: 2 Rows 1+2 Columns -->
-    <!-- Start: 1 Row 2 Columns -->
+    </div>
+
     <div style="margin: 8px 16px;">
         <div class="container">
             <div class="row">
