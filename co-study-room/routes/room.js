@@ -9,6 +9,7 @@ var router = express.Router();
 /* GET /room/register page. */
 router.get('/register', function (req, res, next) {
 
+  // ログインチェック
   if (!tools.checkLoginstatus(req)) {
     res.redirect('/');
     return;
@@ -102,6 +103,34 @@ router.post('/register', async function (req, res, next) {
 
   renderRoomRegister(req, res, 'ルームが作成されました');
 });
+
+/* Get /room/?id page */
+router.get('/', async function (req, res, next) {
+  
+
+  // ログインチェック
+  if (!tools.checkLoginstatus(req)) {
+    res.redirect('/');
+    return;
+  }
+
+  var roomid = req.query.id;
+
+  // ACLチェック
+  var acl = await tools.checkAcl(roomid, req.session.loginuser.id);
+
+  if (!acl) {
+    console.log('err');
+    res.redirect('/top');
+  }
+
+  // render
+  return;
+
+})
+
+
+
 
 function renderRoomRegister(req, res,message) {
   res.render('room-register', {

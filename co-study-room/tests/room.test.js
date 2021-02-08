@@ -139,7 +139,7 @@ describe("room作成画面", () => {
     });    
 
     it('ルーム作成画面への遷移', (done) => {
-      var agent = chai.request.agent(app)
+      var agent = chai.request.agent(app);
       agent
         .post('/login')
         .send({
@@ -160,7 +160,7 @@ describe("room作成画面", () => {
     });
     
     it('room作成実行', (done) => {
-      var agent = chai.request.agent(app)
+      var agent = chai.request.agent(app);
       agent
         .post('/login')
         .send({
@@ -177,8 +177,8 @@ describe("room作成画面", () => {
               end_date: '2020-01-31',
               book_title: 'test book title',
               meetng_sammary: 'test meeting',
-              content: [ 'chap1', 'chap2', 'chap3' ],
-              term_end_date: [ '2020-01-10', '2020-01-21', '2020-01-31' ],
+              content: ['chap1', 'chap2', 'chap3'],
+              term_end_date: ['2020-01-10', '2020-01-21', '2020-01-31'],
             })
             .then((err, res) => {
               expect(err).to.be.null; // エラーがないこと

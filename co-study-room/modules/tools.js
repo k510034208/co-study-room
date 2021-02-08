@@ -1,4 +1,31 @@
 const crypto = require('crypto');
+const db = require('../models/index');
+
+/*
+ * sammary  ACLチェック
+ * @params  roomid <int> roomid
+ * @params  userid  <int> ログインユーザのID
+ */
+exports.checkAcl = async function (roomid, userid) {
+  
+  try {
+    // userid が roomに所属するかチェックする
+    var acl = await db.RoomAcl.findAll({
+      where: {
+        roomid: roomid,
+        userid: userid
+      }
+    });    
+  } catch (err) {
+    console.log(err);
+  }
+
+  if (acl) {
+    return true;
+  }
+
+  return false;
+}
 
 /*
  * sammary  日付の比較(yyyy-mm-dd => Date)
