@@ -3,6 +3,8 @@ const db = require('../models');
 const room = require('../models/room');
 const dbcontroller = require('../modules/dbController');
 const tools = require('../modules/tools');
+var MarkdownIt = require('markdown-it');
+var markdown = new MarkdownIt();
 
 var router = express.Router();
 
@@ -144,11 +146,29 @@ router.get('/', async function (req, res, next) {
     },
   });
 
+  var schedule = await db.Schedule.findAll({
+    where: {
+      roomid: roomid
+    },
+    order: [
+      ['term', 'ASC']
+    ]
+  });
+
+  var mynote = await db.Note.findOne({
+    where: {
+      roomid: roomid,
+      userid:req.session.loginuser.id
+    }
+  });
+
   // render
   res.render('room', {
     session: req.session,
     room: room,
-    book:book
+    book: book,
+    schedule: schedule,
+    mynote:markdown.render(mynote.note)
   });
 })
 
