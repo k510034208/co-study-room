@@ -13,7 +13,7 @@
 <body>
     <div id="app">
         <header>
-            <%- include('./common/header') %>
+            <%- include('./common/header_afterLogin') %>
         </header>
 
         <!-- Start: Login Form Clean -->
@@ -49,7 +49,9 @@
                                 <% } %>  
                                 <span style="margin:0px 20px"><button class="btn btn-primary" data-toggle="modal" data-target="#modal1" @click='getInvitationUrl(<%= room.Room.id%>)' type="button">招待</button></span>
                             </td>
-                            <td style="width:10%"><a href="./room.html"><button class="btn btn-primary" type="button">削除</button></a></td>
+                            <td style="width:10%">
+                                <button class="btn btn-primary" type="button" @click='deleteRoom(<%= room.Room.id%>)'>削除</button>
+                            </td>
                         </tr>
                         <% } %>
                         <% } %>

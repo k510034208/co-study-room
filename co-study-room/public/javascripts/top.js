@@ -40,6 +40,32 @@ var app = new Vue({
           this.keyword = json.data.keyword;
           this.expireddate = json.data.expiration;
         });
+    },
+    deleteRoom: function (roomid) {
+      console.log('deleteRoom');
+      fetch(`/api/v1/room/delete`, {
+        method: 'DELETE',
+        mode: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          roomid: roomid,
+        })
+      })
+        .then(res => {
+          console.log('BBBBBB');
+          return res.json();
+        })
+        .then(json => {
+
+          if (json.result == 'success') {
+            alert('ルームを削除しました');
+            window.location.reload();
+            return;
+          }
+
+          // error時の処理
+          return;
+        });
     }
   },
 });

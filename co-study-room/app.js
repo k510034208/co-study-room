@@ -11,7 +11,9 @@ var loginRouter = require('./routes/login');
 var topRouter = require('./routes/top');
 var roomRouter = require('./routes/room');
 
+// API
 var userApi = require('./api/v1/user');
+var roomApi = require('./api/v1/room');
 
 var app = express();
 
@@ -40,7 +42,9 @@ app.use('/login', loginRouter);
 app.use('/top', topRouter);
 app.use('/room', roomRouter);
 
+// API用のルーティング
 app.use('/api/v1/user', userApi);
+app.use('/api/v1/room', roomApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

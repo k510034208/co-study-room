@@ -26,6 +26,12 @@ router.get('/register', function (req, res, next) {
 /* POST /room/register page. */
 router.post('/register', async function (req, res, next) {
 
+  // ログインチェック
+  if (!tools.checkLoginstatus(req)) {
+    res.redirect('/');
+    return;
+  }
+
   try{
     var room_name = req.body.room_name; //string
     var room_sammary = req.body.room_sammary; //string
@@ -34,19 +40,27 @@ router.post('/register', async function (req, res, next) {
     var book_title = req.body.book_title; //string
     var meetng_sammary = req.body.meetng_sammary; //string
 
-    var term_content = req.body.content;
-  
-    var term_end_date_raw = req.body.term_end_date;
-    var term_end_date = [];
+    // contentは配列もしくは文字列で与えられるため、どちらの場合も配列に保存する
+    var term_content = [];
 
-    for (var date of term_end_date_raw) {
-      term_end_date.push(tools.translateStringToDate(date));  
+    if (typeof(req.body.content) == 'string') {
+      term_content.push(req.body.content);
+    } else {
+      for (var content of term_content) {
+        term_content.push(content);
+      }
     }
-    
-    if (!tools.checkLoginstatus(req)) {
 
-      res.redirect('/');
-      return;
+    // term_end_dateは配列もしくは文字列で与えられるため、どちらの場合も配列に保存する
+    var term_end_date = [];
+    if (typeof(req.body.term_end_date) == 'string') {
+
+      term_end_date.push(tools.translateStringToDate(req.body.term_end_date));
+    } else {
+
+      for (var date of req.body.term_end_date) {
+        term_end_date.push(tools.translateStringToDate(date));
+      }
     }
 
     // start_dateとend_dateの比較

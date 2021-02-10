@@ -33,7 +33,7 @@ exports.checkAcl = async function (roomid, userid) {
  */
 exports.compareDate = function (day1, day2) {
 
-  if (intParse(day2) < intParse(day1)) {
+  if (day2.getTime() < day1.getTime()) {
     return false;
   }
   return true;

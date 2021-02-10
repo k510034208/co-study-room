@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="./stylesheets/styles.min.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
 
 <body>
     <header>
-        <%- include('./common/header') %>
+        <%- include('./common/header_afterLogin') %>
     </header>
 
     <!-- 学習開始日と学習終了日の表示フォーマット -->
@@ -52,12 +53,16 @@
                 </div>
                 <div class="col-md-6" style="padding: 5px 15px;border-width: 1px;border-style: solid;height: 300px;">
                     <p style="margin: 0px 0px 4px;"><strong>メンバーとのチャットスペース</strong></p>
-                    <p style="text-align: left;margin: 0px 0px 8px;">岡本<br>testmessage1<br>2021/1/13 16:40</p>
-                    <p style="text-align: right;margin: 0px 0px 8px;">testmessage2<br>2021/1/13 16:45<br></p>
+                    <div class="chat_area">
+                        <p style="text-align: left;margin: 0px 0px 8px;">岡本<br>testmessage1<br>2021/1/13 16:40</p>
+                        <p style="text-align: right;margin: 0px 0px 8px;">testmessage2<br>2021/1/13 16:45<br></p>
+                    </div>
                 </div>
                 <div class="col-md-12" style="border-width: 1px;border-style: solid;margin: 8px 0px;">
                     <p style="margin: 0px 0px 4px;"><strong>個人のノートスペース</strong></p>
-                    <p style="min-height: 200px;width: auto;"><%- mynote %></p>
+                    <div class="mark_area">
+                        <%- mynote %>
+                    </div>
                 </div>
             </div>
         </div>

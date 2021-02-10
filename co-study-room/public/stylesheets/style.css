@@ -4,9 +4,21 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 .error {
   color: red;
+}
+
+.mark_area {
+  border: solid #aaaaaa 1px;
+  margin: 20px;
+  padding: 10px 20px;
+  min-height: 200px;
+}
+
+.chat_area {
+  border: solid #aaaaaa 1px;
+  padding: 5px 10px;
 }
