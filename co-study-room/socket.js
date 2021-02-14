@@ -34,34 +34,25 @@ io.prototype._init = myIo => {
         await db.sequelize.transaction(async (t) => {
 
           await db.Message.create({
-            
-          })
-      }
-      db.sequelize.sync().then(() => db.Message.create({
-        roomid: roomid,
-        userid: socket.request.session.loginuser.id,
-        message: message,
-      })
-        .then(model => {
-
-          return model.reload();
-        })
-        .then(model => {
-            // メッセージをルーム全員に発信
-          myIo.in(store[room_id]).emit('chat message', {
-            user_id: socket.request.session.login.id,
-            user_name: socket.request.session.login.name,
+            roomid: roomid,
+            userid: socket.request.session.loginuser.id,
             message: message,
-            created_at: model.createdAt.getTime() //Timestamp 対応
-          });
-        })
-      )
-        .catch(err => {
-          console.error(err);
-        })
+          }, { transaction: t });
+        });
+      } catch (err) {
+
+        console.log(err);
+      }
+
+      // メッセージをルーム全員に発信
+      myIo.in(store[room_id]).emit('chat message', {
+        userid: socket.request.session.login.id,
+        username: socket.request.session.login.name,
+        message: message,
+        created_at: model.createdAt.getTime() //Timestamp 対応
+      });
     });
   });
 };
-
 
 module.exports = io;

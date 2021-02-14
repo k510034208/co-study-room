@@ -113,6 +113,7 @@
         </div>
     </div><!-- End: 1 Row 2 Columns -->
 
+    <button @click='sendMessage(1,2)' >button</button>
     <div class="container">
         <p style="margin: 0px 0px 4px;"><strong>勉強会の情報</strong></p>
         <p style="margin: 0px 10px 8px;"><%= room.meeting %><br></p>
@@ -128,6 +129,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>    
+    <script src="./javascripts/vue@2"></script>
+    <script src="./javascripts/room.js"></script>
 </div>
 </body>
 
