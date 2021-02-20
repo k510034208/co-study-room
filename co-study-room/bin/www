@@ -22,6 +22,18 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
+ * socket.io
+ */
+
+var io = require('../socket')(server);
+io.use((socket, next) => {
+  sessionMiddleware(socket.request, socket.request.res, next);
+});
+io._init(io);
+
+
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
@@ -88,3 +100,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+exports.server = server;

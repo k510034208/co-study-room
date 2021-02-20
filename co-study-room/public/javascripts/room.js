@@ -1,6 +1,6 @@
 var socket = io();
-
-socket.emit('join room', roomid);
+var roomid = 1;
+//socket.emit('join room', roomid);
 /*
         socket.on('chat message', (msgObj) => {
       var $message_wrap = $('<div class="message_wrap">');
